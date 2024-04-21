@@ -1,9 +1,13 @@
 import streamlit as st
-import pickle
+import joblib
 import string
 from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
+import numpy as np
+import scipy.sparse
+
+from sklearn.ensemble import ExtraTreesClassifier
 
 ps = PorterStemmer()
 
@@ -32,23 +36,30 @@ def transform_text(text):
 
     return " ".join(y)
 
-tfidf = pickle.load(open('vectorizer.pkl','rb'))
-model = pickle.load(open('model.pkl','rb'))
 
-st.title("Email/SMS Spam Classifier")
+# Load ETC model and TF-IDF vectorizer
+etc_model = joblib.load('etc_model.joblib')
+tfidf = joblib.load('tfidf_vectorizer.joblib')
+
+
+# Define ETC prediction function
+def etc_predict(X):
+    return etc_model.predict(X)
+
+
+st.title("Spam Classifier for Email and SMS")
 
 input_sms = st.text_area("Enter the message")
 
 if st.button('Predict'):
-
-    # 1. preprocess
+    # Preprocess input text
     transformed_sms = transform_text(input_sms)
-    # 2. vectorize
+    # Vectorize preprocessed text using TF-IDF
     vector_input = tfidf.transform([transformed_sms])
-    # 3. predict
-    result = model.predict(vector_input)[0]
-    # 4. Display
+    # Predict using ETC model
+    result = etc_predict(vector_input)
+    # Display prediction result
     if result == 1:
-        st.header("Spam")
+        st.header("Entered message is a Spam")
     else:
-        st.header("Not Spam")
+        st.header("Entered message is not a Spam")
