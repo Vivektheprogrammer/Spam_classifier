@@ -8,6 +8,8 @@ import numpy as np
 import scipy.sparse
 
 from sklearn.ensemble import ExtraTreesClassifier
+nltk.download('punkt')
+nltk.download('stopwords')
 
 ps = PorterStemmer()
 
