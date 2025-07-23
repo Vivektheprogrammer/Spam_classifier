@@ -127,7 +127,7 @@ The application uses pre-trained models stored as joblib files:
 The application is deployed on **Streamlit Cloud** and accessible at:
 **[https://vivekspamclassifier.streamlit.app/](https://vivekspamclassifier.streamlit.app/)**
 
-## 🤝 Contributing
+## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes:
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -136,7 +136,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 5. Open a Pull Request
 
 ## Author
-**Vivek R** - *The Programmer*
+**Vivek R** 
 - GitHub: [@Vivektheprogrammer](https://github.com/Vivektheprogrammer)
 - Project Link: [https://github.com/Vivektheprogrammer/Spam_Classifier](https://github.com/Vivektheprogrammer/Spam_Classifier)
 
